@@ -23,14 +23,8 @@ def process_queries(queries):
         if cur_query.type == 'add':
             # if we already have contact with such number,
             # we should rewrite contact's name
-            if cur_query.number in book:
-                book[cur_query.number] = cur_query.name
-                break
-            else: # otherwise, just add it
-                #contacts.append(cur_query)
-                book[cur_query.number]=cur_query.name
-                #new = {cur_query.number:cur_query.name}
-                #book.update(new)
+            new = {cur_query.number:cur_query.name}
+            book.update(new)
         elif cur_query.type == 'del':
             if cur_query.number in book:
                 del book[cur_query.number]
