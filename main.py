@@ -32,14 +32,15 @@ def process_queries(queries):
                 new = {cur_query.number:cur_query.name}
                 book.update(new)
         elif cur_query.type == 'del':
-            del book[cur_query.number]
+            if cur_query.number in book:
+                del book[cur_query.number]
             
         else:
             response = 'not found'
 
             if cur_query.number in book:
                 response = book.get(cur_query.number)
-                
+
             result.append(response)
 
     return result
