@@ -28,9 +28,9 @@ def process_queries(queries):
                 break
             else: # otherwise, just add it
                 #contacts.append(cur_query)
-                #book[cur_query.number]==cur_query.name
-                new = {cur_query.number:cur_query.name}
-                book.update(new)
+                book[cur_query.number]=cur_query.name
+                #new = {cur_query.number:cur_query.name}
+                #book.update(new)
         elif cur_query.type == 'del':
             if cur_query.number in book:
                 del book[cur_query.number]
