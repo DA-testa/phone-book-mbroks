@@ -24,7 +24,7 @@ def process_queries(queries):
             # if we already have contact with such number,
             # we should rewrite contact's name
             if cur_query.number in book:
-                book.get(cur_query.number).name = cur_query.name
+                book[cur_query.number] = cur_query.name
                 break
             else: # otherwise, just add it
                 #contacts.append(cur_query)
@@ -36,8 +36,10 @@ def process_queries(queries):
             
         else:
             response = 'not found'
+
             if cur_query.number in book:
-                response = book.get(cur_query.number).name
+                response = book.get(cur_query.number)
+                
             result.append(response)
 
     return result
