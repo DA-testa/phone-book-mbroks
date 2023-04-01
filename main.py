@@ -17,13 +17,13 @@ def write_responses(result):
 def process_queries(queries):
     result = []
     # Keep list of all existing (i.e. not deleted yet) contacts.
-    contacts = []
+    
     book = {}
     for cur_query in queries:
         if cur_query.type == 'add':
             # if we already have contact with such number,
             # we should rewrite contact's name
-            if book.get(cur_query.number) == cur_query.number:
+            if cur_query.number in book:
                 book.get(cur_query.number).name = cur_query.name
                 break
             else: # otherwise, just add it
@@ -36,8 +36,8 @@ def process_queries(queries):
             
         else:
             response = 'not found'
-            if book.get(cur_query.number) is not None:
-                response = book[cur_query.number]
+            if cur_query.number in book:
+                response = book.get(cur_query.number).name
             result.append(response)
 
     return result
